@@ -88,6 +88,10 @@ userdel -rf alarm # 删除这个用户, 只留下 root
 systemctl enable systemd-networkd.service # 如果上面提示没有启动, 就启动它
 systemctl disable systemd-resolved.service # 关掉这个服务, 我们已经自行设置 /etc/resolv.conf
 cat /etc/systemd/network/eth.network # 检查网络设置, 默认为 dhcp
+
+# 修复 Wi-Fi
+pacman -S --needed curl
+curl https://github.com/RPi-Distro/firmware-nonfree/raw/buster/brcm/brcmfmac43455-sdio.{bin,clm_blob,txt} --output-dir /lib/firmware/brcm
 ```
 > 
 # 安装 kernel 和 dtb
